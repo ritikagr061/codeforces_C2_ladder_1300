@@ -1,0 +1,73 @@
+#include<bits/stdc++.h>
+ 
+using namespace std;
+ 
+int power(int x, int y)
+{
+	int ans = 1;
+	while (y--)
+		ans = ans * x;
+	return ans;
+}
+ 
+int main()
+{
+ 
+	//paprika and permutation
+ 
+ 
+	int t;
+	cin >> t;
+ 
+	while (t--)
+	{
+		int n;
+		cin >> n;
+ 
+		int a[n];
+		for (int i = 0; i < n; i++)
+			cin >> a[i];
+ 
+		vector<bool> ispresent(n + 1, false);
+ 
+		vector<int> to_change;
+		vector<int> needed;
+ 
+		sort(a, a + n);
+ 
+		for (int i = 0; i < n; i++)
+		{
+			if (a[i] > n)
+				to_change.push_back(a[i]);
+			else if (ispresent[a[i]] == true)
+				to_change.push_back(a[i]);
+			else
+				ispresent[a[i]] = true;
+		}
+ 
+		for (int i = 1; i <= n; i++)
+		{
+			if (ispresent[i] == false)
+				needed.push_back(i);
+		}
+ 
+		//cout << to_change.size() << " " << needed.size() << endl;
+		int ans = to_change.size();
+ 
+		for (int i = 0; i < ans; i++)
+		{
+			if (to_change[i] <= 2 * needed[i]) {
+				ans = -1;
+				break;
+			}
+		}
+ 
+		cout << ans << endl;
+ 
+ 
+	}
+ 
+ 
+ 
+	return 0;
+}

@@ -1,0 +1,63 @@
+#include<bits/stdc++.h>
+using namespace std;
+ 
+int main()
+{
+	int t;
+	cin >> t;
+ 
+	int arr[t];
+ 
+	for (int i = 0; i < t; i++)
+	{
+		cin >> arr[i];
+	}
+ 
+ 
+	for (int i = 0; i < t; i++)
+	{
+ 
+		string s;
+		s = to_string(arr[i]);
+ 
+		string n;
+		int mini = INT_MAX;
+ 
+		for (int num = 0; num <= 60; num ++)
+		{
+			long long int two_k = pow(2, num);
+ 
+			n = to_string(two_k);
+			int ptr_s = 0, ptr_n = 0, cnt = 0;
+ 
+			while (ptr_s < s.size() && ptr_n < n.size())
+			{
+				if (s[ptr_s] == n[ptr_n])
+				{
+					ptr_s++;
+					ptr_n++;
+				}
+				else
+				{
+					ptr_s++;
+					cnt++;
+				}
+			}
+ 
+			if (ptr_s == s.size() && ptr_n != n.size())
+				cnt += n.size() - ptr_n;
+			else if (ptr_n == n.size() && ptr_s != s.size())
+				cnt += s.size() - ptr_s;
+ 
+			mini = min(mini, cnt);
+ 
+		}
+ 
+		cout << mini << endl;
+ 
+ 
+	}
+ 
+ 
+	return 0;
+}

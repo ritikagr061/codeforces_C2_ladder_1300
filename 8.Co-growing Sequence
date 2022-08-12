@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+ 
+using namespace std;
+ 
+int main()
+{
+ 
+    int t;
+    cin >> t;
+ 
+    while (t--)
+    {
+        int n;
+        cin >> n;
+ 
+        long long xi[n];
+        for (int i = 0; i < n; i++)
+            cin >> xi[i];
+ 
+        long long yi[n];
+        yi[0] = 0;
+ 
+        for (int i = 1; i < n; i++)
+        {
+            int t = xi[i - 1] ^ yi[i - 1];
+            yi[i] = (~xi[i])&t;
+        }
+ 
+        cout << yi[0];
+        for (int i = 1; i < n; i++)
+            cout << " " << yi[i];
+        cout << endl;
+ 
+    }
+ 
+ 
+ 
+    return 0;
+}
+ 

@@ -1,0 +1,59 @@
+#include<bits/stdc++.h>
+ 
+using namespace std;
+ 
+const int limit = 2e5 + 5;
+int mat[32][limit];
+ 
+int main()
+{
+ 
+ 
+ 
+    long long int cnt_zero;
+ 
+ 
+    for (long long int i = 0; i <= 31 ; i++)
+    {
+        int cnt_zero = 0;
+        for (long long int j = 1; j < limit; j++)
+        {
+            if (!(j >> i & 1))
+                cnt_zero++;
+            mat[i][j - 1] = cnt_zero;
+        }
+    }
+ 
+    int t;
+    cin >> t;
+ 
+ 
+ 
+    while (t--)
+    {
+        long long int l, r;
+        cin >> l >> r;
+ 
+        int mini = INT_MAX;
+        int max_bits = floor(log2(r));
+ 
+ 
+        for (long long int i = 0; i <= max_bits; i++)
+        {
+            int diff;
+            if (l == 1)
+                diff = mat[i][r - 1];
+            else
+                diff = mat[i][r - 1] - mat[i][l - 2];
+            //cout << diff;
+            mini = min(mini, diff);
+        }
+ 
+ 
+        cout << mini << endl;
+    }
+ 
+ 
+ 
+    return 0;
+}
